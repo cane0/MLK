@@ -1,0 +1,20 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% block content %}
+    <div style="display:flex;justify-content:center; align-items: center;">
+        <img style="width:276; height:180;" src="{{ language.language_image.url }}" alt="language image">
+    </div>
+    <h2>Teachers Available for {{ language.language_name }}</h2>
+    <div class="container">
+        {% for teacher in language.teacher.all %}
+            <br/>
+            <div class="media">
+                <img class="align-self-start mr-3" style="width:115; height:115;  border-radius: 50%" src="{{ teacher.user.profile.image.url }}" alt="Teacher image">
+                <div class="media-body">
+                  <h5 class="mt-0">{{ teacher.user.username }}</h5>
+                  <!--p>{{ teacher.desc }}</p-->
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

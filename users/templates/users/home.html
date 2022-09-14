@@ -1,0 +1,52 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% block content %}
+    {% if user.is_student %}
+        <div style="display:flex;justify-content:center; align-items: center;">
+            <img style="width: 115; height: 115; border-radius: 50%" src="1535657_803388699721792_3452155557254983068_n.jpg" alt="My profile image">
+            <div style="margin:20px">
+                <p><b><u>Name</u>:</b> {{ user.username }}</p>
+                <p><b><u>Phone No.</u>:</b> {{ user.phone_number }}</p>
+                <p><b><u>Email Address</u>:</b> {{ user.email }}</p>
+            </div>
+        </div>
+        <h2>My Languages</h2>
+        <div class="container">
+			{% for subject in student.languages.all %}
+                <br/>
+                <div class="media">
+                    <img class="align-self-start mr-3" style="width:276; height:180" src="{{ subject.language_image.url }}" alt="Language image">
+                    <div class="media-body">
+                      <h5 class="mt-0">{{ subject.language_name }}</h5>
+                      <p>{{ subject.language_description }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div style="display:flex;justify-content:center; align-items: center;">
+            <img style="width: 115; height: 115; border-radius: 50%" src="1535657_803388699721792_3452155557254983068_n.jpg" alt="My profile image">
+            <div style="margin:20px">
+                <p><b><u>Name</u>:</b> {{ user.username }}</p>
+                <p><b><u>Phone No.</u>:</b> {{ user.phone_number }}</p>
+                <p><b><u>Email Address</u>:</b> {{ user.email }}</p>
+                {% if teacher.is_approved %}
+                    <p><b><u>Approved</u>:</b> True</p>
+                {% else %}
+                    <p><b><u>Approved</u>:</b> False</p>
+                {% endif %}
+            </div>
+        </div>
+        <h2>My Languages</h2>
+        <div class="container">
+                <br/>
+                <div class="media">
+                    <img class="align-self-start mr-3" style="width:276; height:180" src="{{ teacher.language.language_image.url }}" alt="Language image">
+                    <div class="media-body">
+                    <h5 class="mt-0">{{ teacher.language.language_name }}</h5>
+                    <p>{{ teacher.language.language_description }}</p>
+                    </div>
+                </div>
+        </div>
+    {% endif %}
+{% endblock content %}

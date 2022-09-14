@@ -1,0 +1,96 @@
+<html>
+	<head>
+		<title>Mes Langues</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<link rel="icon" href="" type="image/icon">
+	</head>
+	<body>
+		<div class="jumbotron text-center" style="margin-bottom:0;">
+			<h1>Mes Langues Kmer<h1>
+			<small>Apprends ta langue avec nous pas à pas</small>
+		</div>
+		<nav class="navbar navbar-expand-sm navbar-dark sticky-top" style="background-color:#007A5E;">
+			<a class="navbar-brand" href="#">
+				<img src="#" style="width: 50px;">
+			</a>
+
+			<a style="color: #FFFFFF80;" href="{% url 'home' %}">MLK</a>
+			<div class="navbar-nav ml-auto">
+				{% if user.is_authenticated %}
+					<div class="btn-group dropdown">
+						<li class="nav-item dropdown">
+							<a class="nav-link" style="color: #FFFFFF80;" href="#">My Profile</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link" style="color: #FFFFFF80;" href="{% url 'logout' %}">Log out</a>
+						</li>
+					</div>
+				{% else %}
+					<div class="btn-group dropdown">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" style="color: #FFFFFF80;" href="#" id="navbardrop" data-toggle="dropdown">Register</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="{% url 'student-register' %}">As a student</a>
+								<a class="dropdown-item" href="{% url 'teacher-register' %}">As a teacher</a>
+							</div>
+						</li>
+					</div>
+					<div class="btn-group dropdown">
+						<li class="nav-item dropdown">
+							<a class="nav-link" style="color: #FFFFFF80;" href="{% url 'login' %}">Log In</a>
+						</li>
+					</div>
+				{% endif %}
+				</div>
+		</nav>
+		<div class="container-fluid px-0" id="main-container">
+			<div class="container p-0">
+				<div class="py-5 mt-4">
+					{% if messages %}
+						{% for message in messages %}
+						<div class="alert alert-{{ message.tags }}">
+							{{ message }}
+						</div>
+						{% endfor %}
+					{% endif %}
+
+					{% block content %}{% endblock %}
+				</div>
+			</div>
+		</div>
+		<nav class="navbar navbar-dark navbar-expand-sm" style="background-color:#007A5E;">
+			<ul class="nav">
+				<li class="nav-item">
+					<a class="nav-link active" style="color: #FFFFFF80;" href="#">À Propos</a>
+				</li>
+				<div class="btn-group dropup">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" style="color: #FFFFFF80;" href="#" id="navbardrop" data-toggle="dropdown">Suivez Nous</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="#" target="_blank">Twitter</a>
+							<a class="dropdown-item" href="#" target="_blank">Facebook</a>
+							<a class="dropdown-item" href="https://instagram.com/cane___0/" target="_blank">Instagram</a>
+						</div>
+					</li>
+				</div>
+				<div class="btn-group dropup">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" style="color: #FFFFFF80;" href="#" id="navbardrop" data-toggle="dropdown">Faire un don</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="#" target="_blank">MoMo</a>
+							<a class="dropdown-item" href="#" target="_blank">Orange Money</a>
+							<a class="dropdown-item" href="#" target="_blank">Paiement par Carte</a>
+							<a class="dropdown-item" href="#" target="_blank">PayPal</a>
+						</div>
+					</li>
+				</div>
+			</ul>
+		</nav>
+	</body>
+</html>
